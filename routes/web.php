@@ -1,48 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VentasController;
+use App\Http\Controllers\ComprasController;
+
+Route::get('/', HomeController::class);
 
 
 Route::get('/', function () {
     return "Bienvenido a la pagina principal";
 });
 
-Route::get('ventas', function () {
-    return "Bienvenido a la modulo ventas";
+Route::controller(VentasController::class)->group(function(){
+    Route::get('ventas', 'index');
+    Route::get('ventas/registrarVenta', 'registrarVenta');
+    Route::get('ventas/registrarDetalleVenta', 'registrarDetalleVenta');
+    Route::get('ventas/generarVoucherVenta', 'generarVoucherVenta');
+    Route::get('ventas/anularVenta', 'anularVenta');
 });
 
-Route::get('ventas/registrarVenta', function () {
-    return "En esta pagina se registrara una venta";
-});
-
-Route::get('ventas/registrarDetalleVenta', function () {
-    return "En esta pagina se registrara un detalle de venta";
-});
-
-Route::get('ventas/generarVoucherVenta', function () {
-    return "En esta pagina se creara un voucher de venta";
-});
-
-Route::get('ventas/anularVenta', function () {
-    return "En esta pagina se podra anular una venta";
-});
-
-Route::get('compras', function () {
-    return "Bienvenido a la pagina principal";
-});
-
-Route::get('compras/registrarCompra', function () {
-    return "En esta pagina se registrara una compra";
-});
-
-Route::get('compras/registrarDetalleCompra', function () {
-    return "En esta pagina se registrara un detalle de compra";
-});
-
-Route::get('compras/generarVoucherCompra', function () {
-    return "En esta pagina se creara un voucher de compra";
-});
-
-Route::get('compras/anularCompra', function () {
-    return "En esta pagina se podra anular una venta";
+Route::controller(ComprasController::class)->group(function(){
+    Route::get('compras', 'index');
+    Route::get('compras/registrarCompra', 'registrarCompra');
+    Route::get('compras/registrarDetalleCompra', 'registrarDetalleCompra');
+    Route::get('compras/generarVoucherCompra', 'generarVoucherCompra');
+    Route::get('compras/anularCompra', 'anularCompra');
 });
