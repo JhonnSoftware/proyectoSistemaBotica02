@@ -6,26 +6,24 @@ use Illuminate\Http\Request;
 
 class ComprasController extends Controller
 {
-    
     //Metodo para mostrar la pagina principal de las compras
     public function index(){
-        return "Bienvenido al modulo de compras";
+        return view('compras.index');
     }
     //Metodo para registrar la compra
     public function registrarCompra(){
-        return "En esta pagina podras registrar una compra";
+        return view('compras.registrarCompra');
     }
     //Metodo para registrar el detalle de compra
     public function registrarDetalleCompra(){
-        return "En esta pagina podras registrar un detalle de compra";
+        return view('compras.registrarDetalleCompra');
     }
     //Metodo para generar un voucher de la compra creada
     public function generarVoucherCompra(){
-        return "En esta pagina podras generar un voucher de la compra realizada";
+        return view('compras.generarVoucherCompra');
     }
     //Metodo para anular una compra
     public function anularCompra(){
-        return "En esta pagina podras anular una compra";
+        return view('compras.anularCompra');
     }
-
 }
