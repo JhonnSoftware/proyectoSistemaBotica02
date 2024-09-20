@@ -27,3 +27,13 @@ Route::controller(ComprasController::class)->group(function(){
     Route::get('compras/generarVoucherCompra', 'generarVoucherCompra');
     Route::get('compras/anularCompra', 'anularCompra');
 });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
