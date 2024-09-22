@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\Cliente;
+use App\Models\Clientes;
 use App\Models\Venta;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ClienteTest extends TestCase
+class ClientesTest extends TestCase
 {
     use RefreshDatabase; // Esto se asegura de que tu base de datos se reinicie para cada prueba
 
@@ -15,7 +15,7 @@ class ClienteTest extends TestCase
     public function test_cliente_tiene_ventas()
     {
         // Crear un cliente
-        $cliente = Cliente::factory()->create();
+        $cliente = Clientes::factory()->create();
         
         // Crear una venta asociada al cliente
         $venta = Venta::factory()->create(['id_cliente' => $cliente->id]);
