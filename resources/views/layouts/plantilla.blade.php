@@ -42,23 +42,35 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-cogs text-primary"></i></div>
+                                Administracion
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-user mr-2 text-primary"></i>Usuarios</a>
+                                    <a class="nav-link" href=""><i class="fas fa-box mr-2 text-primary"></i>Cajas</a>
+                                    <a class="nav-link" href=""><i class="fas fa-tools mr-2 text-primary"></i>Configuracion</a>
+                                </nav>
+                            </div>
                             <a class="nav-link" href="{{ route('clientes.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users text-primary"></i></div>
                                 Clientes
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="{{ route('proveedores.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-truck text-primary"></i></div>
                                 Proveedores
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="{{ route('categorias.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-cubes text-primary"></i></div>
                                 Categorias
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes text-primary"></i></div>
                                 Productos
                             </a>

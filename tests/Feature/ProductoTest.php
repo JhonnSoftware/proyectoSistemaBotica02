@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Producto;
-use App\Models\Proveedor;
-use App\Models\Categoria;
+use App\Models\Proveedores;
+use App\Models\Categorias;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -16,10 +16,10 @@ class ProductoTest extends TestCase
     public function test_producto_pertenece_a_proveedor_y_categoria()
     {
         // Crear un proveedor
-        $proveedor = Proveedor::factory()->create();
+        $proveedor = Proveedores::factory()->create();
         
         // Crear una categoría
-        $categoria = Categoria::factory()->create();
+        $categoria = Categorias::factory()->create();
 
         // Crear un producto vinculado a ese proveedor y categoría
         $producto = Producto::factory()->create([

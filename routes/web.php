@@ -5,6 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProveedoresController;
+use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', HomeController::class);
 
@@ -32,7 +35,18 @@ Route::controller(ClienteController::class)->group(function(){
     Route::get('clientes/eliminarCliente', 'eliminarCliente');
 });
 
+Route::controller(ProveedoresController::class)->group(function(){
+    Route::get('proveedores', 'index')->name('proveedores.index');
+    //Route::get('proveedores/registrarProveedores', 'registrarProveedores')->name('proveedores.registrar');
+});
 
+Route::controller(CategoriasController::class)->group(function(){
+    Route::get('categorias', 'index')->name('categorias.index'); 
+});
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('users', 'index')->name('users.index');
+});
 
 Route::middleware([
     'auth:sanctum',
