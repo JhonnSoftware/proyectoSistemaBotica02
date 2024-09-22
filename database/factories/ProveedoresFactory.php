@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Proveedor;
+use App\Models\Proveedores;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProveedorFactory extends Factory
+class ProveedoresFactory extends Factory
 {
-    protected $model = Proveedor::class;
+    protected $model = Proveedores::class;
 
     public function definition()
     {

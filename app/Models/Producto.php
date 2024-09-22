@@ -10,10 +10,10 @@ class Producto extends Model
     use HasFactory;
 
     public function proveedor() {
-        return $this->belongsTo(Proveedor::class, 'id_proveedor');
+        return $this->belongsTo(Proveedores::class, 'id_proveedor');
     }
 
     public function categoria() {
-        return $this->belongsTo(Categoria::class, 'id_categoria');
+        return $this->belongsTo(Categorias::class, 'id_categoria');
     }
 }

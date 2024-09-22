@@ -19,7 +19,7 @@ class ClienteController extends Controller
     public function registrarClientes(){
         return view('clientes.registrarClientes');
     }
-
+    
     public function store(Request $request)
     {
         // Validar los datos del formulario
