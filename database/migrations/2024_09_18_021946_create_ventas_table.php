@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -16,9 +17,14 @@ return new class extends Migration
             $table->integer('id_cliente');
             $table->float('total');
             $table->date('fecha');
-            $table->integer('estado');
+            $table->string('estado');
             $table->timestamps();
         });
+
+        DB::table('ventas')->insert([
+            ['id_cliente' => 1, 'total' => 100.00, 'fecha' => now(), 'estado' => 'completado'],
+            // Más datos si es necesario
+        ]);
     }
 
     /**

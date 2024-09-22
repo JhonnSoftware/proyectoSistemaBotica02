@@ -12,4 +12,11 @@ class Venta extends Model
     public function cliente() {
         return $this->belongsTo(Cliente::class, 'id_cliente');
     }
+
+    protected $fillable = [
+        'id_cliente',
+        'total',
+        'fecha',
+        'estado'
+    ];
 }
