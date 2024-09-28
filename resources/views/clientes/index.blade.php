@@ -34,10 +34,13 @@
                 <td>{{ $cliente->direccion }}</td>
                 <td>{{ $cliente->estado }}</td>
                 <td>
-                    <!-- Aquí puedes agregar botones de acciones como editar o eliminar -->
-                    <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="#" class="btn btn-sm btn-danger">Eliminar</a>
-                </td>
+                    @if($cliente->estado == 'Activo')
+                        <a href="{{ route('clientes.editar', $cliente->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{{ route('clientes.eliminar', $cliente->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que quieres marcar este cliente como inactivo?');">Eliminar</a>
+                    @else
+                        <a href="{{ route('clientes.reingresar', $cliente->id) }}" class="btn btn-sm btn-success">Reingresar</a>
+                    @endif
+                </td>               
             </tr>
             @endforeach
 

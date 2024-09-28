@@ -7,7 +7,7 @@
         <li class="breadcrumb-item active">Categorias</li>
     </ol>
 
-    <a href="" class="btn btn-primary mb-2">
+    <a href="{{ route('categorias.registrar') }}" class="btn btn-primary mb-2">
         <i class="fas fa-plus"></i> Nuevo Categoria
     </a>
     <table class="table" id="tblCategorias">
@@ -28,9 +28,12 @@
                 <td>{{ $categoria->nombre }}</td>
                 <td>{{ $categoria->estado }}</td>
                 <td>
-                    <!-- Aquí puedes agregar botones de acciones como editar o eliminar -->
-                    <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="#" class="btn btn-sm btn-danger">Eliminar</a>
+                    @if($categoria->estado == 'Activo')
+                        <a href="{{ route('categorias.editar', $categoria->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{{ route('categorias.eliminar', $categoria->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que quieres marcar esta categoria como inactivo?');">Eliminar</a>
+                    @else
+                        <a href="{{ route('categorias.reingresar', $categoria->id) }}" class="btn btn-sm btn-success">Reingresar</a>
+                    @endif
                 </td>
             </tr>
             @endforeach

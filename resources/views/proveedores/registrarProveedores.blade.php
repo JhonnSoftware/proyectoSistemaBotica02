@@ -1,6 +1,6 @@
 @extends('layouts.plantilla') <!-- Esto extiende la plantilla base -->
 
-@section('title', 'Registrar Cliente') <!-- Cambia el título de la página -->
+@section('title', 'Registrar Proveedor') <!-- Cambia el título de la página -->
 
 @section('content')
     @if(session('success'))
@@ -11,18 +11,18 @@
     @endif
 
     <div class="container mt-5">
-    <h1 class="text-center mb-4">CRUD de Clientes</h1>
+    <h1 class="text-center mb-4">CRUD de Proveedores</h1>
 
     <!-- Formulario para crear o editar un cliente -->
     <div class="card mb-4">
-        <div class="card-header">Agregar Cliente</div>
+        <div class="card-header">Agregar Proveedor</div>
         
         <div class="card-body">
-            <form action="{{ route('clientes.store') }}" method="POST">
+            <form action="{{ route('proveedores.store') }}" method="POST">
                 @csrf <!-- Token de seguridad para los formularios en Laravel -->
                 <div class="mb-3">
-                    <label for="dni" class="form-label">DNI</label>
-                    <input type="text" class="form-control" id="dni" name="dni" required>
+                    <label for="ruc" class="form-label">RUC</label>
+                    <input type="text" class="form-control" id="ruc" name="ruc" required>
                 </div>
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -43,8 +43,8 @@
                         <option value="Inactivo">Inactivo</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar Cliente</button>
-                <a href="{{ route('clientes.index') }}" class="btn btn-secondary">Volver</a>
+                <button type="submit" class="btn btn-primary">Guardar Proveedor</button>
+                <a href="{{ route('proveedores.index') }}" class="btn btn-secondary">Volver</a>
             </form>
         </div>
     </div>

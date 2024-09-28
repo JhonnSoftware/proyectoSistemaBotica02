@@ -7,7 +7,7 @@
         <li class="breadcrumb-item active">Proveedores</li>
     </ol>
 
-    <a href="" class="btn btn-primary mb-2">
+    <a href="{{ route('proveedores.registrar') }}" class="btn btn-primary mb-2">
         <i class="fas fa-plus"></i> Nuevo Proveedor
     </a>
     <table class="table" id="tblProveedores">
@@ -34,9 +34,12 @@
                 <td>{{ $proveedor->direccion }}</td>
                 <td>{{ $proveedor->estado }}</td>
                 <td>
-                    <!-- Aquí puedes agregar botones de acciones como editar o eliminar -->
-                    <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="#" class="btn btn-sm btn-danger">Eliminar</a>
+                    @if($proveedor->estado == 'Activo')
+                        <a href="{{ route('proveedores.editar', $proveedor->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{{ route('proveedores.eliminar', $proveedor->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que quieres marcar este proveedor como inactivo?');">Eliminar</a>
+                    @else
+                        <a href="{{ route('proveedores.reingresar', $proveedor->id) }}" class="btn btn-sm btn-success">Reingresar</a>
+                    @endif
                 </td>
             </tr>
             @endforeach
