@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('codigo');
-            $table->string('descripcion');
-            $table->float('precio_compra');
-            $table->float('precio_venta');
-            $table->integer('cantidad');
-            $table->integer('id_proveedor');
-            $table->integer('id_categoria');
-            $table->integer('estado');
+            $table->text('descripcion');
+            $table->decimal('precio_compra', 8, 2);
+            $table->decimal('precio_venta', 8, 2);
+            $table->integer('cantidad')->default(0);
+            $table->foreignId('id_proveedor')->constrained('proveedores');
+            $table->foreignId('id_categoria')->constrained('categorias');
+            $table->string('estado'); // Activo por defecto
             $table->timestamps();
         });
     }

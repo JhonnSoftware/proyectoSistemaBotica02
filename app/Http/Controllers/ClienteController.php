@@ -9,7 +9,7 @@ class ClienteController extends Controller
 {
     public function index(){
         // Solo mostrar clientes activos
-        $clientes = Clientes::all();
+        $clientes = Clientes::paginate(10);
         return view('clientes.index', compact('clientes'));
     }
 
@@ -19,14 +19,18 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
+        // Validar los datos del formulario, incluyendo la unicidad del DNI con mensaje personalizado
         $request->validate([
-            'dni' => 'required',
+            'dni' => 'required|unique:clientes,dni', // Asegura que el DNI sea único en la tabla 'clientes'
             'nombre' => 'required',
             'telefono' => 'required',
             'direccion' => 'required',
             'estado' => 'required',
+        ], [
+            'dni.unique' => 'El DNI ya ha sido registrado.', // Mensaje personalizado
         ]);
-        
+
+        // Crear un nuevo cliente en la base de datos
         Clientes::create([
             'dni' => $request->dni,
             'nombre' => $request->nombre,
@@ -35,6 +39,7 @@ class ClienteController extends Controller
             'estado' => $request->estado,
         ]);
 
+        // Redirigir a una página con un mensaje de éxito
         return redirect()->route('clientes.registrar')->with('success', 'Cliente ingresado correctamente');
     }
 
@@ -64,14 +69,18 @@ class ClienteController extends Controller
 
     public function actualizarCliente(Request $request, $id)
     {
+        // Validar los datos del formulario, permitiendo que el mismo DNI no se considere duplicado
         $request->validate([
-            'dni' => 'required',
+            'dni' => 'required|unique:clientes,dni,' . $id, // Excepción para el cliente actual
             'nombre' => 'required',
             'telefono' => 'required',
             'direccion' => 'required',
             'estado' => 'required',
+        ], [
+            'dni.unique' => 'El DNI ya ha sido registrado.', // Mensaje personalizado
         ]);
 
+        // Actualizar el cliente en la base de datos
         $cliente = Clientes::findOrFail($id);
         $cliente->update([
             'dni' => $request->dni,

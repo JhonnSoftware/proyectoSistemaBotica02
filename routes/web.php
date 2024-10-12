@@ -7,8 +7,10 @@ use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ArqueoCajaController;
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -63,25 +65,42 @@ Route::controller(UserController::class)->group(function(){
     Route::post('users/actualizarUser/{id}', 'actualizarUser')->name('users.actualizar'); // Ruta para actualizar
 });
 
+Route::controller(ProductosController::class)->group(function(){
+    Route::get('productos', 'index')->name('productos.index');
+    Route::get('productos/registrarProducto', 'registrarProducto')->name('productos.registrar');
+    Route::post('productos', 'store')->name('productos.store');
 
+    Route::get('productos/eliminarProducto/{id}', 'eliminarProducto')->name('productos.eliminar'); // Ruta para eliminar
+    Route::get('productos/reingresarProducto/{id}', 'reingresarProducto')->name('productos.reingresar');
 
-
-
-
-Route::controller(VentasController::class)->group(function(){
-    Route::get('ventas', 'index');
-    Route::get('ventas/registrarVenta', 'registrarVenta');
-    Route::get('ventas/registrarDetalleVenta', 'registrarDetalleVenta');
-    Route::get('ventas/generarVoucherVenta', 'generarVoucherVenta');
-    Route::get('ventas/anularVenta', 'anularVenta');
+    Route::get('productos/editarProducto/{id}', 'editarProducto')->name('productos.editar'); // Ruta para editar formulario
+    Route::post('productos/actualizarProducto/{id}', 'actualizarProducto')->name('productos.actualizar'); 
 });
 
 Route::controller(ComprasController::class)->group(function(){
-    Route::get('compras', 'index');
-    Route::get('compras/registrarCompra', 'registrarCompra');
-    Route::get('compras/registrarDetalleCompra', 'registrarDetalleCompra');
-    Route::get('compras/generarVoucherCompra', 'generarVoucherCompra');
-    Route::get('compras/anularCompra', 'anularCompra');
+    Route::get('compras', 'index')->name('compras.index');
+    Route::post('compras/agregarProductoTemporal', 'agregarProductoTemporal')->name('compras.agregarProductoTemporal');
+    Route::post('compras/guardarCompra', 'guardarCompra')->name('compras.guardarCompra');
+    Route::delete('compras/eliminarProductoTemporal/{id}', 'eliminarProductoTemporal')->name('compras.eliminarProductoTemporal');
+    Route::get('compras/lista', [ComprasController::class, 'lista'])->name('compras.lista');
+    Route::post('compras/anular/{id}', 'anularCompra')->name('compras.anular');
+});
+
+Route::controller(VentasController::class)->group(function(){
+    Route::get('ventas', 'index')->name('ventas.index');
+    Route::post('ventas/agregarProductoTemporal', 'agregarProductoTemporal')->name('ventas.agregarProductoTemporal');
+    Route::post('ventas/guardarVenta', 'guardarVenta')->name('ventas.guardarVenta');
+    Route::delete('ventas/eliminarProductoTemporal/{id}', 'eliminarProductoTemporal')->name('ventas.eliminarProductoTemporal');
+    Route::get('ventas/lista', [VentasController::class, 'lista'])->name('ventas.lista');
+    Route::post('ventas/anular/{id}', 'anularVenta')->name('ventas.anular');
+
+});
+
+Route::controller(ArqueoCajaController::class)->group(function(){
+    Route::get('arqueos', 'index')->name('arqueos.index'); // Mostrar listado de arqueos
+    Route::get('arqueos/create', 'create')->name('arqueos.create'); // Formulario para nuevo arqueo
+    Route::post('arqueos', 'store')->name('arqueos.store'); // Guardar nuevo arqueo
+    Route::post('arqueos/cerrar/{id}', 'cerrarArqueo')->name('arqueos.cerrar'); // Cerrar arqueo
 });
 
 

@@ -13,12 +13,12 @@
     <div class="container mt-5">
     <h1 class="text-center mb-4">CRUD de Proveedores</h1>
 
-    <!-- Formulario para crear o editar un cliente -->
+    <!-- Formulario para crear o editar un proveedor -->
     <div class="card mb-4">
         <div class="card-header">Agregar Proveedor</div>
         
         <div class="card-body">
-            <form action="{{ route('proveedores.store') }}" method="POST">
+            <form action="{{ route('proveedores.store') }}" method="POST" onsubmit="return validarFormulario()">
                 @csrf <!-- Token de seguridad para los formularios en Laravel -->
                 <div class="mb-3">
                     <label for="ruc" class="form-label">RUC</label>
@@ -48,4 +48,17 @@
             </form>
         </div>
     </div>
+</div>
+
+<script>
+    function validarFormulario() {
+        var ruc = document.getElementById('ruc').value;
+        if (ruc.length !== 11 || isNaN(ruc)) {
+            alert('El RUC debe tener exactamente 11 dígitos numéricos.');
+            return false; // Evita que el formulario se envíe
+        }
+        return true; // Permite que el formulario se envíe
+    }
+</script>
+
 @endsection

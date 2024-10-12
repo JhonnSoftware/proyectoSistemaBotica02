@@ -10,6 +10,8 @@
     <a href="{{ route('clientes.registrar') }}" class="btn btn-primary mb-2">
         <i class="fas fa-plus"></i> Nuevo Cliente
     </a>
+
+    <!-- Aquí está tu tabla -->
     <table class="table" id="tblClientes">
         <thead class="thead-dark">
             <tr class="bg-dark">
@@ -24,7 +26,6 @@
         </thead>
 
         <tbody>
-
             @foreach($clientes as $cliente)
             <tr>
                 <td>{{ $cliente->id }}</td>
@@ -43,7 +44,10 @@
                 </td>               
             </tr>
             @endforeach
-
         </tbody>
     </table>
+
+    <!-- Enlaces de paginación -->
+    {{ $clientes->links() }}
+
 @endsection

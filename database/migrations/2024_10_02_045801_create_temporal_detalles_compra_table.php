@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalleventas', function (Blueprint $table) {
+        Schema::create('temporal_detalles_compra', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_venta');
-            $table->integer('id_producto');
+            $table->unsignedBigInteger('id_producto');
             $table->integer('cantidad');
-            $table->float('precio');
-            $table->float('sub_total');
+            $table->decimal('precio', 8, 2);
+            $table->decimal('sub_total', 10, 2);
             $table->timestamps();
+
+            $table->foreign('id_producto')->references('id')->on('productos');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detalleventas');
+        Schema::dropIfExists('temporal_detalles_compra');
     }
 };

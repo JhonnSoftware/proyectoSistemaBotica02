@@ -16,4 +16,20 @@ class Producto extends Model
     public function categoria() {
         return $this->belongsTo(Categorias::class, 'id_categoria');
     }
+
+    protected $fillable = [
+        'codigo', 
+        'descripcion', 
+        'precio_compra', 
+        'precio_venta', 
+        'cantidad', 
+        'id_proveedor', 
+        'id_categoria',
+        'estado'
+    ];
+
+    // Valor por defecto para el campo cantidad
+    protected $attributes = [
+        'cantidad' => 0,
+    ];
 }

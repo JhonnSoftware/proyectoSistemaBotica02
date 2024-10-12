@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -14,17 +13,16 @@ return new class extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_cliente');
-            $table->float('total');
-            $table->date('fecha');
+            $table->unsignedBigInteger('id_cliente');
+            $table->decimal('total', 10, 2);
+            $table->dateTime('fecha');
             $table->string('estado');
             $table->timestamps();
+
+            // Relación con la tabla proveedores
+            $table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('cascade');
         });
 
-        DB::table('ventas')->insert([
-            ['id_cliente' => 1, 'total' => 100.00, 'fecha' => now(), 'estado' => 'completado'],
-            // Más datos si es necesario
-        ]);
     }
 
     /**

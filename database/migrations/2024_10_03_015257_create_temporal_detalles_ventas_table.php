@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detallecompras', function (Blueprint $table) {
+        Schema::create('temporal_detalles_ventas', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_compra');
-            $table->integer('id_producto');
+            $table->unsignedBigInteger('id_producto');
             $table->integer('cantidad');
-            $table->float('precio');
-            $table->float('sub_total');
+            $table->decimal('precio', 8, 2);
+            $table->decimal('sub_total', 10, 2);
             $table->timestamps();
+
+            // Clave foránea
+            $table->foreign('id_producto')->references('id')->on('productos')->onDelete('cascade');
         });
     }
 
@@ -27,6 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detallecompras');
+        Schema::dropIfExists('temporal_detalle_ventas');
     }
 };
+

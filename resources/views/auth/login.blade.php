@@ -12,7 +12,10 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="col-md-4">
             <div class="card shadow-sm">
-                <div class="card-body">
+                <div class="card-body text-center">
+                    <!-- Aquí va la imagen del logo -->
+                    <img src="{{ asset('imagenes/logo.jpeg') }}" alt="Boticas D'Toty Farma" class="img-fluid mb-4" style="max-height: 150px;">
+                    
                     <h1 class="text-center mb-4">Iniciar Sesión</h1>
 
                     <!-- Mostrar mensajes de error si hay errores de validación -->

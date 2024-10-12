@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->float('total');
-            $table->date('fecha');
-            $table->integer('estado');
+            $table->unsignedBigInteger('id_proveedor');
+            $table->decimal('total', 10, 2);
+            $table->dateTime('fecha');
+            $table->string('estado');
             $table->timestamps();
+    
+            // Relación con la tabla proveedores
+            $table->foreign('id_proveedor')->references('id')->on('proveedores')->onDelete('cascade');
         });
     }
 

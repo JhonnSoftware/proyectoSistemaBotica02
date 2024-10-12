@@ -9,14 +9,11 @@ class Venta extends Model
 {
     use HasFactory;
 
-    public function cliente() {
-        return $this->belongsTo(Cliente::class, 'id_cliente');
-    }
+    protected $table = 'ventas';
 
-    protected $fillable = [
-        'id_cliente',
-        'total',
-        'fecha',
-        'estado'
-    ];
+    protected $fillable = ['id_cliente', 'total', 'fecha', 'estado'];
+
+    public function detalles() {
+        return $this->hasMany(DetalleVenta::class, 'id_venta');
+    }
 }
